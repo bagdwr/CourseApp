@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/red4">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Course"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/EditLayout"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:letterSpacing="0.55"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/EditLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="30dp">
+
+        <TextView
+            android:id="@+id/loginTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textFontWeight="700"
+            app:layout_constraintTop_toTopOf="parent"
+            android:letterSpacing="0.2"
+
+            />
+
+        <EditText
+            android:id="@+id/loginET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/loginTV"
+            android:layout_marginTop="10dp"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_border"
+            />
+
+        <TextView
+            android:id="@+id/passwordTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textFontWeight="700"
+            app:layout_constraintTop_toBottomOf="@+id/loginET"
+            android:layout_marginTop="15dp"
+            android:letterSpacing="0.2"
+
+            />
+
+        <EditText
+            android:id="@+id/passwordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/passwordTV"
+            android:layout_marginTop="10dp"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_border"
+            />
+
+        <Button
+            android:id="@+id/signInBtn"
+            android:background="@drawable/rounded_corner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/passwordET"
+            android:textSize="15sp"
+            android:text="Sign in"
+            android:layout_marginTop="40dp"
+            android:letterSpacing="0.3"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="90dp"
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/EditLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:alpha="0.8"/>
+
+    <TextView
+        android:id="@+id/noAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="20dp"
+        android:text="No account?"
+        android:textColor="#182545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+    <TextView
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="sign up"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@+id/line"
+        app:layout_constraintStart_toEndOf="@+id/noAcc"
+        android:layout_marginLeft="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
