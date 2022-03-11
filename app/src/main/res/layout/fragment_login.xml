@@ -16,6 +16,7 @@
         android:textSize="25sp"
         android:letterSpacing="0.55"
         />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/EditLayout"
         android:layout_width="match_parent"
@@ -78,7 +79,7 @@
 
         <Button
             android:id="@+id/signInBtn"
-            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/redBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/passwordET"
@@ -111,7 +112,8 @@
         android:layout_marginLeft="128dp"
         android:layout_marginTop="20dp"
         android:text="No account?"
-        android:textColor="#182545"
+        android:textStyle="bold"
+        android:textColor="#263D75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
@@ -120,7 +122,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="sign up"
+        android:text="@string/my_text"
         android:textColor="#ffffff"
         app:layout_constraintTop_toBottomOf="@+id/line"
         app:layout_constraintStart_toEndOf="@+id/noAcc"

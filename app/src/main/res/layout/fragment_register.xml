@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/red4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/EditLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/loginTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.2"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:textFontWeight="700"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <EditText
+            android:id="@+id/loginET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_border"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/loginTV" />
+
+        <TextView
+            android:id="@+id/fullnameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.2"
+            android:text="Fullname"
+            android:textColor="#ffffff"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/loginET"
+            />
+
+        <EditText
+            android:id="@+id/fullnameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_border"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/fullnameTV" />
+
+        <TextView
+            android:id="@+id/birthdayTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.2"
+            android:text="Birthday"
+            android:textColor="#ffffff"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/fullnameET"
+            />
+
+        <TextView
+            android:id="@+id/birthdayListener"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/edit_text_border"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:textSize="18sp"
+
+            android:textColor="#ffffff"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/birthdayTV"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:id="@+id/passwordRegTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.2"
+            android:text="Password"
+            android:textColor="#ffffff"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/birthdayListener"
+            />
+
+        <EditText
+            android:id="@+id/passwordRegET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_border"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/passwordRegTV" />
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/redBtn"
+            android:letterSpacing="0.3"
+            android:text="Register"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/passwordRegET" />
+
+
+
+        <!--        <DatePicker-->
+<!--            android:id="@+id/birthdayDP"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="52dp"-->
+<!--            android:calendarTextColor="@color/white"-->
+<!--            android:calendarViewShown="false"-->
+<!--            android:datePickerMode="spinner"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/fullnameET"-->
+<!--            tools:layout_editor_absoluteX="30dp" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
