@@ -11,8 +11,16 @@ import androidx.fragment.app.Fragment
 import com.example.courseapp.MainActivity
 
 import com.example.courseapp.Model.Users
+import com.example.courseapp.Query.UserInterface
 import com.example.courseapp.R
 import com.google.gson.Gson
+import com.jaredsburrows.retrofit2.adapter.synchronous.SynchronousCallAdapterFactory
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.random.Random
 
 class RegistrationFragment:Fragment() {
@@ -23,6 +31,10 @@ class RegistrationFragment:Fragment() {
     private lateinit var fullnameET:EditText
     private lateinit var registerBtn:Button
     private lateinit var backView : ImageView
+
+    private var retrofit: Retrofit?=null
+    private var userInterface: UserInterface? = null;
+    private val compositeDisposable= CompositeDisposable()
 
 
     override fun onCreateView(
@@ -44,6 +56,13 @@ class RegistrationFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        retrofit=Retrofit.Builder()
+            .baseUrl("http://192.168.233.185:8080/")
+            .addCallAdapterFactory(SynchronousCallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        userInterface = retrofit?.create(UserInterface::class.java)
+
         birthdayListener.setOnClickListener {
             showDialog()
         }
@@ -54,11 +73,35 @@ class RegistrationFragment:Fragment() {
         })
 
         registerBtn.setOnClickListener {
-            val user= Users(Random.nextLong(100),fullnameET.text.toString(),loginET.text.toString(),birthdayListener.text.toString(), passwordRegET.text.toString())
-            val gson = Gson()
-            val userGson = gson.toJson(user)
-            Log.i("RegFragment: ", userGson)
+            if(loginET.text.trim().isNotEmpty() && fullnameET.text.trim().isNotEmpty()
+                && birthdayListener.text.trim().isNotEmpty() && passwordRegET.text.trim().isNotEmpty()){
+                val login = loginET.text.toString()
+                val fullname = fullnameET.text.toString()
+                val password = passwordRegET.text.toString()
+                val birthday = birthdayListener.text.toString()
 
+                val disposableGetWeatherInfo= Single.fromCallable{
+                    userInterface?.registerUser(login,password,fullname,birthday)
+                }.observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({
+                            status->status?.let {
+                            if(it){
+                                loginET.text.clear()
+                                fullnameET.text.clear()
+                                passwordRegET.text.clear()
+                                birthdayListener.text=""
+                                Toast.makeText(requireContext(),"Successfully registered", Toast.LENGTH_LONG).show()
+                            }else{
+                                Toast.makeText(requireContext(),"Something went wrong", Toast.LENGTH_LONG).show()
+                            }
+                    }
+                    },{
+                        Log.i("registerUser():","$it")
+                        print(it.printStackTrace())
+                        Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_LONG).show()
+                    })
+            }
         }
     }
 

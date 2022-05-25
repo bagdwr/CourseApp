@@ -65,7 +65,7 @@ class LoginFragment:Fragment() {
                 val passwordText = passwordET.text.toString()
 
                 val disposableGetWeatherInfo= Single.fromCallable{
-                    userInterface?.getStatus(loginText,passwordText)
+                    userInterface?.login(loginText,passwordText)
                 }.observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe({
@@ -73,7 +73,7 @@ class LoginFragment:Fragment() {
                             Toast.makeText(requireContext(),it.toString(), Toast.LENGTH_LONG).show()
                     }
                     },{
-                        Log.i("getWeather():","$it")
+                        Log.i("login():","$it")
                         print(it.printStackTrace())
                         Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_LONG).show()
                     })
