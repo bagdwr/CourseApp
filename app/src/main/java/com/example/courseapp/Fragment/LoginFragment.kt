@@ -1,6 +1,5 @@
 package com.example.courseapp.Fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,12 +11,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.courseapp.MainActivity
-import com.example.courseapp.Model.User
-import com.example.courseapp.MySharedPreference
+import com.example.courseapp.Query.UserInterface
 import com.example.courseapp.R
-import com.google.gson.Gson
-
-
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class LoginFragment:Fragment() {
@@ -25,6 +26,11 @@ class LoginFragment:Fragment() {
     private lateinit var signInBtn:Button
     private lateinit var loginET:EditText
     private lateinit var passwordET:EditText
+    private var retrofit: Retrofit?=null
+    private var userInterface: UserInterface? = null;
+    private val compositeDisposable= CompositeDisposable()
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,24 +46,37 @@ class LoginFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        retrofit=Retrofit.Builder()
+            .baseUrl("http://localhost:8080/")
+            .addCallAdapterFactory(SynchronousCallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        userInterface = retrofit?.create(UserInterface::class.java)
         signUpBtn.setOnClickListener {
             (requireActivity() as MainActivity)
                 .changeFragment(RegistrationFragment())
         }
 
         signInBtn.setOnClickListener {
-            val mySharedPreference = MySharedPreference.getSharedPreference(requireActivity().application)
-            val gson = Gson()
-            val json: String = mySharedPreference.getString(MySharedPreference.KEY,"")?:""
-            val user: User = gson.fromJson(json, User::class.java)
+            if(loginET.text.trim().isEmpty() && passwordET.text.trim().isEmpty()){
+                var loginText = loginET.text
+                var passwordText = passwordET.text
 
-            Log.i("LoginFragment: ", json)
-            if(user.login.equals(loginET.text.toString()) && user.password.equals(passwordET.text.toString())){
-                Toast.makeText(this.context,"${user.fullname} welcome", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this.context,"Wrong action", Toast.LENGTH_SHORT).show()
+                val disposableGetWeatherInfo= Single.fromCallable{
+                    userInterface?.getStatus(loginText,passwordText)
+                }.observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({
+                        user->user?.let {
+                            Toast.makeText(requireContext(),it.toString(), Toast.LENGTH_LONG).show()
+                    }
+                    },{
+                        Log.i("getWeather():","$it")
+                        it.printStackTrace()
+                        Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_LONG).show()
+                    })
+
             }
-
         }
 
 

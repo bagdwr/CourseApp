@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.courseapp.Model.User
-import com.example.courseapp.MySharedPreference
 import com.example.courseapp.R
 import com.google.gson.Gson
 import kotlin.random.Random
@@ -46,11 +45,6 @@ class RegistrationFragment:Fragment() {
         }
 
         registerBtn.setOnClickListener {
-            val user= User(Random.nextLong(100),fullnameET.text.toString(),loginET.text.toString(),birthdayListener.text.toString(), passwordRegET.text.toString())
-            val gson = Gson()
-            val userGson = gson.toJson(user)
-            Log.i("RegFragment: ", userGson)
-            MySharedPreference.getSharedPreference(requireActivity().application).edit().putString(MySharedPreference.KEY,userGson).apply()
         }
     }
 

@@ -1,5 +1,11 @@
 package com.example.courseapp.Model
 
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
-class User(var id:Long,var fullname:String,var login:String,var birthday:String,var password:String);
+class User(
+    @SerializedName("id") val id:Long,
+    @SerializedName("fullname") val fullname:String,
+    @SerializedName("email") val email:String,
+    @SerializedName("birthday") val birthday:String,
+    @SerializedName("password") val password:String);
