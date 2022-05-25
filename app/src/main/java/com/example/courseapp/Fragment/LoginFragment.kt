@@ -1,5 +1,6 @@
 package com.example.courseapp.Fragment
 
+import android.content.SyncRequest
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.example.courseapp.MainActivity
 import com.example.courseapp.Query.UserInterface
 import com.example.courseapp.R
+import com.jaredsburrows.retrofit2.adapter.synchronous.SynchronousCallAdapterFactory
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -47,7 +49,7 @@ class LoginFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         retrofit=Retrofit.Builder()
-            .baseUrl("http://localhost:8080/")
+            .baseUrl("http://192.168.233.185:8080/")
             .addCallAdapterFactory(SynchronousCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -58,9 +60,9 @@ class LoginFragment:Fragment() {
         }
 
         signInBtn.setOnClickListener {
-            if(loginET.text.trim().isEmpty() && passwordET.text.trim().isEmpty()){
-                var loginText = loginET.text
-                var passwordText = passwordET.text
+            if(loginET.text.trim().isNotEmpty() && passwordET.text.trim().isNotEmpty()){
+                val loginText = loginET.text.toString()
+                val passwordText = passwordET.text.toString()
 
                 val disposableGetWeatherInfo= Single.fromCallable{
                     userInterface?.getStatus(loginText,passwordText)
@@ -72,7 +74,7 @@ class LoginFragment:Fragment() {
                     }
                     },{
                         Log.i("getWeather():","$it")
-                        it.printStackTrace()
+                        print(it.printStackTrace())
                         Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_LONG).show()
                     })
 

@@ -1,14 +1,14 @@
 package com.example.courseapp.Query
 
 import android.text.Editable
-import com.example.courseapp.Model.User
+import com.example.courseapp.Model.Users
 import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface UserInterface {
-    @POST("api/checkLoginAndPassword")
+    @POST("api/user/checkLoginAndPassword")
     fun getStatus(
-        @Query("email") email: Editable,
-        @Query("password") password: Editable
-    ): User
+        @Query("email") email: String,
+        @Query("password") password: String
+    ): Users
 }

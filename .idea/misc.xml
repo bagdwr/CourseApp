@@ -3,12 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/drawable/edit_text_border.xml" value="0.1385" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.1385" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29583333333333334" />
-        <entry key="app/src/main/res/layout/birthday_dialog.xml" value="0.23958333333333334" />
-        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.26774989109413294" />
+        <entry key="app/src/main/res/layout/birthday_dialog.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18355407714843752" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.1" />
       </map>
     </option>
   </component>
