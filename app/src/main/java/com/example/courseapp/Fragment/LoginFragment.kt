@@ -70,7 +70,11 @@ class LoginFragment:Fragment() {
                     .subscribeOn(Schedulers.io())
                     .subscribe({
                         user->user?.let {
-                            Toast.makeText(requireContext(),it.toString(), Toast.LENGTH_LONG).show()
+                        if(user.email.equals(loginText) && user.password.equals(passwordText)){
+                            Toast.makeText(requireContext(),"Go to next fragment", Toast.LENGTH_LONG).show()
+                        }else{
+                            Toast.makeText(requireContext(),"Wrong login or password", Toast.LENGTH_LONG).show()
+                        }
                     }
                     },{
                         Log.i("login():","$it")
