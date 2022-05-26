@@ -71,7 +71,8 @@ class LoginFragment:Fragment() {
                     .subscribe({
                         user->user?.let {
                         if(user.email.equals(loginText) && user.password.equals(passwordText)){
-                            Toast.makeText(requireContext(),"Go to next fragment", Toast.LENGTH_LONG).show()
+                            (requireActivity() as MainActivity)
+                                .changeFragment(HomeFragment())
                         }else{
                             Toast.makeText(requireContext(),"Wrong login or password", Toast.LENGTH_LONG).show()
                         }
