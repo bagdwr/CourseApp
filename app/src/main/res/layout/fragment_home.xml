@@ -40,9 +40,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <Button
-                android:id="@+id/"
-                />
+
 
             <TextView
                 android:id="@+id/textView4"
@@ -55,6 +53,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/exit"
+                android:text="exit"
+                app:layout_constraintTop_toBottomOf="@id/textView4"
+                app:layout_constraintBottom_toTopOf="@id/textView5"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/textView5"

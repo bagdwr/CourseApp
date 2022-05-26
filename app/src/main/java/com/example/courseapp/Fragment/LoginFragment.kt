@@ -71,6 +71,8 @@ class LoginFragment:Fragment() {
                     .subscribe({
                         user->user?.let {
                         if(user.email.equals(loginText) && user.password.equals(passwordText)){
+                                loginET.text.clear()
+                                passwordET.text.clear()
                             (requireActivity() as MainActivity)
                                 .changeFragment(HomeFragment())
                         }else{
